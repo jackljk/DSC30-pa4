@@ -76,7 +76,7 @@ public class DLLStack<T> {
         /* If the stack size is 0, returns null else returns the value at the top of the stack */
         if (this.size() == 0){
             return null;
-        } else{
+        } else {
             return this.stack.get(0);
         }
     }

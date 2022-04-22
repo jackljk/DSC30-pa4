@@ -155,7 +155,7 @@ public class DoublyLinkedList<T> extends AbstractList<T> {
             this.tail.setPrev(n); //Sets the tail previous link to the new node
             this.nelems += 1; // Increases the number of elements in the DLL by 1
             return true;
-        } else{
+        } else {
             /* Add to the end of the list when there are elements in the DLL */
             Node n = new Node(element, this.tail, this.tail.getPrev());
             this.tail.prev.setNext(n); //Sets the previous last node next link o the new node
@@ -177,19 +177,18 @@ public class DoublyLinkedList<T> extends AbstractList<T> {
     @Override
     public void add(int index, T element)
             throws IndexOutOfBoundsException, NullPointerException {
-        // TODO: Implementation for throwing exceptions followed by
+        // Implementation for throwing exceptions followed by
         if (index > this.nelems || index < 0){
             throw new IndexOutOfBoundsException();
         } else if (element == null){
             throw new NullPointerException();
-        } else if (isEmpty()) {
+        } else if (isEmpty()) { // implementation of adding the new data
             /* Add when there are no elements in the list */
             Node n = new Node(element, this.tail, this.head);
             this.head.setNext(n); //Sets the heads next link to the new node
             this.tail.setPrev(n); //Sets the tail previous link to the new node
             this.nelems += 1; // Increases the number of elements in the DLL by 1
         } else {
-            // implementation of adding the new data
             Node current = this.head;
             for (int i = 0;i<index;i++){
                 current = current.getNext();
@@ -206,7 +205,7 @@ public class DoublyLinkedList<T> extends AbstractList<T> {
      */
     @Override
     public void clear() {
-        // TODO: implement clear
+        // Clear implementation, removes links of head and tail to any other node
         this.head.next = this.tail;
         this.tail.prev = this.head;
         this.nelems = 0;
@@ -219,8 +218,8 @@ public class DoublyLinkedList<T> extends AbstractList<T> {
      */
     @Override
     public boolean contains(Object element) {
-        T data = (T)element;
-        // TODO: Fill in implementation
+        T data = (T) element;
+        // Implementation for checkign to see if an element exist within the DLL
         Node curr = this.head;
         for (int i = 0;i<=this.nelems;i++){
             if (curr.getElement() == data){
@@ -240,7 +239,7 @@ public class DoublyLinkedList<T> extends AbstractList<T> {
      */
     @Override
     public T get(int index) throws IndexOutOfBoundsException {
-        // TODO: Fill in implementation to get the node at index
+        // Implementation to get the node at index
         if (index >= this.nelems || index < 0){
             throw new IndexOutOfBoundsException();
         } else {
@@ -258,7 +257,7 @@ public class DoublyLinkedList<T> extends AbstractList<T> {
      * @return The Node at the index
      */
     private Node getNth(int index) {
-        // TODO: implement
+        // Implementation to get the Nth node
         if (index > this.nelems || index < 0){
             throw new IndexOutOfBoundsException();
         } else {
@@ -276,12 +275,8 @@ public class DoublyLinkedList<T> extends AbstractList<T> {
      */
     @Override
     public boolean isEmpty() {
-        // TODO: implement isEmpty
-        if (this.nelems == 0){
-            return true;
-        } else {
-            return false;
-        }
+        // Implementation to check is the DLL isEmpty
+        return this.nelems == 0;
     }
 
     /**
@@ -297,8 +292,8 @@ public class DoublyLinkedList<T> extends AbstractList<T> {
             throw new IndexOutOfBoundsException();
         } else {
             Node nToRemove = this.getNth(index); //Gets the node at the index
-            nToRemove.next.setPrev(nToRemove.getPrev()); //Sets the next nodes prev to the node before
-            // the current one
+            nToRemove.next.setPrev(nToRemove.getPrev()); //Sets the next nodes prev to the node
+            // before the current one
             nToRemove.prev.setNext(nToRemove.getNext());//Sets the prev node next to the node after
             // the current one
             nToRemove.remove();
@@ -319,12 +314,15 @@ public class DoublyLinkedList<T> extends AbstractList<T> {
     @Override
     public T set(int index, T element)
             throws IndexOutOfBoundsException, NullPointerException {
-        // TODO: Fill in implmentation
+        // Implementation how changing the element at an index
         if (index >= this.nelems || index < 0 || this.isEmpty()){
+            // Throws if index is not in range
             throw new IndexOutOfBoundsException();
         } else if (element == null){
+            // Throws if element provided is null
             throw new NullPointerException();
         } else {
+            // Changing element at the index
             Node nAtIndex = this.getNth(index);
             T eAtIndex = nAtIndex.getElement();
             nAtIndex.setElement(element);
@@ -338,21 +336,24 @@ public class DoublyLinkedList<T> extends AbstractList<T> {
      */
     @Override
     public int size() {
-        // TODO: complete implementation
+        // Implementation to get the size by returning the number of elements
         return this.nelems;
     }
 
     /**
      * String representation of this list in the form of:
      * "[(head) -> elem1 -> elem2 -> ... -> elemN -> (tail)]"
-     *
-     * TODO: javadoc comments
+     * @return The String reprersentation of the DLL
      */
     @Override
     public String toString() {
         StringBuilder s = new StringBuilder("[(head) -> ");
         Node curr = this.head;
         for (int i = 0;i<this.nelems;i++){
+            /*
+             Starts at the head and adds a string representation of each element in the DLL
+             using a String builder
+             */
             s.append(curr.next.getElement().toString()).append(" -> ");
             curr = curr.getNext();
         }

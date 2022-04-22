@@ -24,12 +24,13 @@ public class RoundRobin {
      */
     public RoundRobin(Task[] toHandle) {
         /* Initializes all the instance variables to be used */
+        int defaultQuantum = 4;
         if (toHandle == null || toHandle.length == 0){
             throw new IllegalArgumentException();
         }
         this.waitlist = new DoublyLinkedList<Task>();
         this.finished = new DoublyLinkedList<Task>();
-        this.quantum = 4; //Default value
+        this.quantum = defaultQuantum; //Default value
         this.burstTime = 0;
         this.waitTime = 0;
         for (Task task : toHandle) {
