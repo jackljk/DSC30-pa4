@@ -4,7 +4,6 @@
  */
 
 import java.util.AbstractList;
-import java.util.LinkedList;
 
 /**
  * Doubly Linked List Implementation
@@ -365,20 +364,47 @@ public class DoublyLinkedList<T> extends AbstractList<T> {
 
     /**
      * Remove nodes whose index is a multiple of base
-     *
-     * TODO: javadoc comments
+     * @param base The base multiple of which to remove the nodes
      */
     public void removeMultipleOf(int base) {
-        // TODO: complete implementation       
+        // Implementation to remove base of a multiple
+        if (base < 1){
+            throw new IllegalArgumentException();
+        } else {
+            int size = this.size();
+            int sizeDecrease = 0;
+            for (int i = 0;i<size;i++){
+                /* Removes based of the based given by checking using mod. */
+                if (i%base == 0){
+                    T r = this.remove(i - sizeDecrease);
+                    sizeDecrease++;
+                }
+            }
+        }
     }
 
     /**
      * Swap the nodes between index [0, splitIndex] of two lists
-     *
-     * TODO: javadoc comments
+     * @param other The other list to swap with
+     * @param splitIndex The index to split till
      */
     public void swapSegment(DoublyLinkedList other, int splitIndex) {
         // TODO: complete implementation
+        Node nodeAtIndexThis = this.getNth(splitIndex);
+        Node nodeAtIndexOther = other.getNth(splitIndex);
+        /* Swapping at index = 0 */
+        Node temp = new Node(this.head.next.getElement(), this.head.next.getNext(), this.head);
+        this.head.next = other.head.getNext();
+        other.head.next = temp;
+        /* Swap at the indexes */
+        Node tempNext = new Node(nodeAtIndexThis.next.getElement(), nodeAtIndexThis.next.getNext(),
+                nodeAtIndexThis);
+        Node tempPrev = new Node(nodeAtIndexThis.prev.getElement(), nodeAtIndexThis,
+                nodeAtIndexThis.prev.getPrev());
+        nodeAtIndexThis.prev = nodeAtIndexOther.getPrev();
+        nodeAtIndexThis.next = nodeAtIndexOther.getNext();
+        nodeAtIndexOther.next = tempNext;
+        nodeAtIndexOther.prev = tempPrev;
     }
 
 }

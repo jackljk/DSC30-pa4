@@ -278,4 +278,41 @@ public class DoublyLinkedListTest {
         a.add(1);
         a.set(0, null);
     }
+
+    @Test
+    public void removeMultipleOfTest(){
+        for (int i = 0;i<100;i++){
+            a.add(i);
+        }
+        a.removeMultipleOf(3);
+        assertEquals(66, a.size());
+        a.clear();
+        for (int i = 0;i<10;i++){
+            b.add("Test" + i);
+        }
+        b.removeMultipleOf(4);
+        assertEquals("[(head) -> Test1 -> Test2 -> Test3 -> " +
+                "Test5 -> Test6 -> Test7 -> Test9 -> (tail)]", b.toString());
+        b.removeMultipleOf(2);
+        assertEquals("[(head) -> Test2 -> " +
+                "Test5 -> Test7 -> (tail)]", b.toString());
+    }
+
+    @Test
+    public void swapTest(){
+        DoublyLinkedList<Integer> d = new DoublyLinkedList<Integer>();
+        for (int i = 0;i<10;i++){
+            a.add(i);
+        }
+        for (int i = 9;i>=0;i--){
+            d.add(i);
+        }
+        a.swapSegment(d, 3);
+        assertEquals("[(head) -> 9 -> 8 -> 7 -> 6 -> 4 ->" +
+                " 5 -> 6 -> 7 -> 8 -> 9 -> (tail)]", a.toString());
+        assertEquals("[(head) -> 0 -> 1 -> 2 -> 3 -> 5 -> 4 " +
+                "-> 3 -> 2 -> 1 -> 0 -> (tail)]", d.toString());
+        a.swapSegment(d, 0);
+        assertEquals("[(head) -> 0 -> 8 -> 7 -> 6 -> 4 ->" +
+                " 5 -> 6 -> 7 -> 8 -> 9 -> (tail)]", a.toString());}
 }
