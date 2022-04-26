@@ -33,7 +33,7 @@ public class DLLQueue<T> {
      * @return True if empty, false otherwise
      */
     public boolean isEmpty() {
-        /* Uses the DLL isempty methid */
+        /* Uses the DLL isempty method */
         return this.queue.isEmpty();
     }
 

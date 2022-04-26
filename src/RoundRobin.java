@@ -13,6 +13,7 @@ public class RoundRobin {
 
     /* constants */
     private static final String TASK_HANDLED = "All tasks are already handled.";
+    private static final int defaultQuantum = 4;
 
     /* instance variables */
     private DoublyLinkedList<Task> waitlist, finished;
@@ -24,7 +25,6 @@ public class RoundRobin {
      */
     public RoundRobin(Task[] toHandle) {
         /* Initializes all the instance variables to be used */
-        int defaultQuantum = 4;
         if (toHandle == null || toHandle.length == 0){
             throw new IllegalArgumentException();
         }

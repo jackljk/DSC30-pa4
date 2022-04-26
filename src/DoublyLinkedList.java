@@ -389,7 +389,7 @@ public class DoublyLinkedList<T> extends AbstractList<T> {
      * @param splitIndex The index to split till
      */
     public void swapSegment(DoublyLinkedList other, int splitIndex) {
-        // TODO: complete implementation
+        /* Implementation of swap segments */
         Node nodeAtIndexThis = this.getNth(splitIndex);
         Node nodeAtIndexOther = other.getNth(splitIndex);
         /* Swapping at index = 0 */
